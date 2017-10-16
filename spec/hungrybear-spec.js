@@ -57,5 +57,10 @@ describe('HungryBear', function() {
     expect(fuzzy.didYouGetEaten()).toEqual(true);
   });
 
-  it('if bear sleeping food level remains at fixed')
+  it('should check if the food and mood levels go down to 0', function() {
+    jasmine.clock().tick(20001);
+    expect(fuzzy.foodLevel).toEqual(0);
+    expect(fuzzy.moodLevel).toEqual(0);
+  });
+  // you can test attributes or function
 });
