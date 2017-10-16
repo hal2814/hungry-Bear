@@ -17,13 +17,16 @@ var HungryBear = exports.HungryBear = function () {
     this.name = name;
     this.foodLevel = 10;
     this.moodLevel = 10;
-    this.sleepLevel = 10;
+    this.sleepLevel = 20;
     this.timer = 0;
   }
 
   _createClass(HungryBear, [{
     key: "masterTimer",
     value: function masterTimer() {
+      if (this.sleepLevel > 0) {
+        --this.sleepLevel;
+      }
       if (this.foodLevel > 0) {
         --this.foodLevel;
       } else if (this.moodLevel > 0) {
@@ -106,9 +109,9 @@ var Food = exports.Food = function Food() {
 // bear.introduction();
 
 },{}],2:[function(require,module,exports){
-"use strict";
+'use strict';
 
-var _hungrybear = require("./../js/hungrybear.js");
+var _hungrybear = require('./../js/hungrybear.js');
 
 $(document).ready(function () {
   // $('#bear-form').submit(function(event) {
@@ -116,10 +119,19 @@ $(document).ready(function () {
   // });
   var theBear = new _hungrybear.HungryBear("Bucko the Bear");
   theBear.setHunger(1);
+  $('#name').text(theBear.name);
+  $("#feed").click(function () {
+    theBear.foodLevel += 5;
+  });
+  $("#sleep").click(function () {
+    theBear.sleepLevel += 5;
+  });
   setInterval(function () {
     console.log("food: " + theBear.foodLevel);
     console.log("mood: " + theBear.moodLevel);
-    $('#output').text(theBear.foodLevel);
+    $('#food-output').text(theBear.foodLevel);
+    $('#mood-output').text(theBear.moodLevel);
+    $('#sleep-output').text(theBear.sleepLevel);
     if (theBear.foodLevel === 0) {
       $('#angry').show();
       $('#calm').hide();

@@ -4,11 +4,14 @@ export class HungryBear {
     this.name = name;
     this.foodLevel = 10;
     this.moodLevel = 10;
-    this.sleepLevel = 10;
+    this.sleepLevel = 20;
     this.timer = 0;
   }
 
   masterTimer(){
+    if(this.sleepLevel > 0){
+      --this.sleepLevel;
+    }
     if(this.foodLevel > 0){
       --this.foodLevel;
     }else if(this.moodLevel > 0){

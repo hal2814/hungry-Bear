@@ -6,10 +6,19 @@ $(document).ready(function() {
   // });
   let theBear = new HungryBear("Bucko the Bear");
   theBear.setHunger(1);
+  $('#name').text(theBear.name);
+  $( "#feed" ).click(function() {
+    theBear.foodLevel += 5;
+  });
+  $( "#sleep" ).click(function() {
+    theBear.sleepLevel += 5;
+  });
   setInterval(function(){
     console.log("food: "+theBear.foodLevel);
     console.log("mood: "+theBear.moodLevel);
-    $('#output').text(theBear.foodLevel);
+    $('#food-output').text(theBear.foodLevel);
+    $('#mood-output').text(theBear.moodLevel);
+    $('#sleep-output').text(theBear.sleepLevel);
     if(theBear.foodLevel === 0){
       $('#angry').show();
       $('#calm').hide();
@@ -19,4 +28,5 @@ $(document).ready(function() {
       $('#angry').hide();
     }
   });
+
 });
