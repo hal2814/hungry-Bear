@@ -56,4 +56,6 @@ describe('HungryBear', function() {
     jasmine.clock().tick(5001);
     expect(fuzzy.didYouGetEaten()).toEqual(true);
   });
+
+  it('if bear sleeping food level remains at fixed')
 });

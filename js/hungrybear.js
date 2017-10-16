@@ -3,24 +3,43 @@ export class HungryBear {
   constructor(name) {
     this.name = name;
     this.foodLevel = 10;
+    this.moodLevel = 10;
+    this.sleepLevel = 10;
+    this.timer = 0;
+  }
+
+  masterTimer(){
+    if(this.foodLevel > 0){
+      --this.foodLevel;
+    }else if(this.moodLevel > 0){
+      --this.moodLevel;
+    }
   }
 
   setHunger(difficulty) {
     if(difficulty === 1){
-      setInterval(() => {
-        this.foodLevel--;
+      this.timer = setInterval(() => {
+        this.masterTimer();
       }, 1000);
     }
-    else if(difficulty === 2){
-      setInterval(() => {
-        this.foodLevel--;
+    if(difficulty === 2){
+      this.timer = setInterval(() => {
+        this.masterTimer();
       }, 500);
-    }else{ //defualt to easiest difficulty
-      setInterval(() => {
-        this.foodLevel--;
-      }, 1000);
     }
   }
+
+  stopTimer() {
+    clearInterval(this.timer);
+  }
+
+  // setMood() {
+  //   if(this.foodLevel <= 0){
+  //     this.timer = setInterval(() => {
+  //       this.moodLevel--;
+  //     }, 1000);
+  //   }
+  // }
 
   didYouGetEaten() {
     if (this.foodLevel > 0) {
